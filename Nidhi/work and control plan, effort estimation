@@ -1,0 +1,268 @@
+
+
+
+
+Effort Estimation:
+After the identification of the requirements, which are listed as user stories in the product backlog, effort is to be estimated for these user stories. To do this, we have to first select the effort estimation technique that is most suitable for our project. We have discussed this in our daily scrum meeting and have selected Planning Poker as our effort estimation technique.
+Access to the book and lecture, we found several tool that could be used to estimate effort of project, algorithmic estimation, COCOMO, expert based and planning poker. Finally, our team has decided to select planning poker estimation technique. The rationale for choosing this technique are as follow:
+Algorithmic estimation
+We are brand new team with brand new project, we do not have any past project data.
+COCOMO
+If we want to use this model, we need to estimate thousands of source lines of code (SLOC, KLOC), as well as the systematic analysis and evaluation of the project. It is very difficult for us, and will consume a lot of time.
+It does not allow everyone in the team to participate.
+Expert based
+We are students, and our team do not have a member who is very experienced in develop.
+The results may be biased by the person’s understanding.
+Planning poker
+For agile projects, this is the most popular effort estimation technique.
+Effective and time-saving, everybody in the team can participate.
+Everyone on the team know this technology, and they all learned in the lecture.
+
+
+We have implemented planning poker in our sprint planning meeting which is lead by the Scrum master. All the team members are involved in this estimation. The product owner gives the product backlog for which the effort is to be estimated. There are 17 user stories in our product backlog. The effort for each user story is calculated in terms of Man-hours. Every team member is gives an effort estimate for each user story without each other’s knowledge. The total effort for each user story is calculated by taking an average of efforts estimated by all the team members. That will be the final effort estimated for that user story. The following table gives the details of Planning Poker estimation technique performed by our group.
+
+
+
+
+User story
+TM1
+TM2
+TM3
+TM4
+TM5 
+TM6
+TM7
+Estimated effort(Man-hours)
+US1
+25
+30
+45
+35
+40
+35
+40
+36
+US2
+65
+70
+40
+40
+50
+65
+60
+56
+US3
+20
+30
+35
+30
+25
+30
+30
+29
+US4
+70
+60
+70
+65
+70
+60
+80
+69
+US5
+40
+30
+50
+40
+60
+30
+30
+40
+US6
+20
+25
+35
+30
+20
+40
+30
+30
+US7
+60
+40
+50
+50
+30
+50
+70
+50
+US8
+50
+50
+50
+40
+30
+30
+50
+43
+US9
+60
+60
+70
+60
+50
+65
+65
+60
+US10
+70
+60
+60
+50
+65
+60
+65
+60
+US11
+60
+50
+70
+80
+80
+70
+80
+70
+US12
+50
+50
+40
+30
+40
+20
+40
+39
+US13
+45
+55
+50
+35
+45
+40
+45
+45
+US14
+50
+60
+70
+60
+70
+70
+50
+61
+US15
+50
+60
+60
+70
+65
+65
+60
+60
+US15
+60
+80
+50
+70
+70
+80
+80
+70
+US16
+80
+80
+70
+70
+70
+80
+70
+74
+US17
+80
+80
+70
+80
+70
+80
+80
+77
+
+
+Therefore, from the above calculations a total effort of 969 Man-hours is estimated. We are given a total project duration of 1050 Man-hours. Therefore, every individual is to put on  approximately 138 Man-hours to complete the project by the estimated time.
+
+
+work plan and control plan
+
+Work Plan:
+This section mainly  includes the work plan followed to complete the product implementing scrum. The major deliverables of the project are delivered in this work plan and they are:
+A web application for online grocery system.
+Documentation of the website.
+Code for the website.
+Project Management Plan.
+The Project Management Plan is to be delivered by 15th November 2016, whereas the other deliverables are to be delivered by January 15th 2017.
+The product is developed in 3 sprints using the scrum development methodology. These are named Sprint-1, Sprint-2 and Sprint-3. At the end of each sprint a semi-finished product is obtained. We have designed to implement a Follow-up sprint after the completion of 3 sprints and still the product is not delivered.
+
+
+Sprint-1:
+A sprint plan meeting is conducted to form the product backlog, estimate effort for its features and define the sprint backlog. The Scrum master, product owner and the development team are included in this meeting. In this meeting the requirements of the product are discussed and elicited in the product backlog as user stories. Effort is estimated to these user stories using  the Planning Poker estimation technique. This technique involves all the team members including the Scrum master and the product owner. Sprint plan meeting was conducted on 7th November 2016. After the estimation of effort, the user stories are prioritized by the Scrum master and the most important stories are to be implemented in the first sprint. Agile principles state that important requirements are to be implemented immediately[anu ref 5,20]. This ensures the customer feedback for the important requirements and thus modifications can be made within time. Hence, the team has decided to develop the user stories---- in Sprint-1.
+Further these user stories are divided based on the development phase. The sprint-1 starts from 7th November 2016 and ends on 19th November 2016. We follow a five day working plan through which a total of 10 working days for the sprint-1. Each team member works for 2 hours a day until the completion of the sprint.
+
+
+Sprint-2:
+User stories ….. are to be developed in this Sprint. The main objective of this Sprint-2 is to identify if there is any work overflow from the previous sprint and then plan the sprint schedule. Scrum master identifies the work overflow from the previous sprint and then plans the schedule for the Sprint-2. This is done on the first day of Sprint-2 i.e 22nd November 2016. The sprint starts from 22nd November 2016 to 4th December 2016. We followed the Five day work plan in this Sprint and a total of 10 working days are calculated.
+At the end of Sprint-2 the product with the expected features is developed and the feedback is collected to make the necessary modifications. The feedback is given by the product owner and is collected by the scrum master.
+
+
+
+
+Sprint-3:
+The Sprint-3 delivers the product with User stories... . The Sprint schedule is prepared by the scrum master identifying the work overflow from the previous sprint. If there is any work overflow in the previous sprint, it is first completed and the new sprint activities are then implemented. Sprint-3 starts from 7th December 2016 and ends on 18th December 2016. Five day working schedule is implemented and a total of 10 working days are calculated in this sprint. Therefore a total of 20 working hours per team member and 140 working hours for the entire team in this sprint.
+The deliverable at the end of Sprint-3 will be the end product with all the requirements. 
+
+
+Follow-up Sprint:
+This sprint is implemented only if the product is not delivered within the end of Sprint-3. This follow up sprint is from 20th December 2016 to 28th December 2016. This sprint is used to implement the work overflow from the previous sprint and deliver the end product.
+
+
+The following are the list of activities performed in every sprint to identify the progress of work scheduled accordingly.
+
+
+Daily Scrum meeting: 
+These meetings are conducted on all the working days of the sprint which includes all the team members. Daily scrum meetings discuss the progress of work at the end of respective day by every team member. These meetings are held for 15 minutes in the last working hours of every working day in the sprint. They analyze the work done from the previous day and identify the work to be done for the next day. The Development team uses these daily scrum meetings to analyze the progress of work towards the sprint goal and inspect the work to be completed in the sprint backlog[pap drive]. 
+
+
+Sprint Review meeting:
+Sprint review meetings are held at the end of every sprint. Our sprint duration is for 2 weeks which includes 10 working days. The main motive of these meetings is to analyze the increment of work from the sprint. The product owner, sponsor, development team and scrum master are present in this meeting. The product owner analyzes if the deliverable is matching the requirements of the user and gives the feedback. The scrum master analyzes the feedback and makes the sprint plan accordingly. Our sprint meetings are usually held for 2 hours during which the deliverables are analyzed.
+We have planned our sprint review meetings on 7 November 2016, 22 November 2016, 29 November 2016, 13 December 2016 and 2 January 2017.
+
+
+Sprint Retrospective meeting:
+The motive of this meeting is to inspect the scrum team and make the required modifications for the next sprint[pap drive]. This meeting is conducted after the sprint review meeting and before the next sprint. We conduct our meetings on 8 november 2016, 23 November 2016, 30 November 2016, 14 December 2016 and 3 January 2017 and they are held for one hour. The scrum master conducts the meeting and ensures that all the team members participate in it and understand its purpose.
+
+
+Control Plan:
+Monitoring and controlling of a project involves its version control, progress control, schedule control and scope control. We have implemented various techniques to ensure the above mentioned control plans are executed. 
+
+
+For Version control: This ensures coordination among the team members. Our team members are from various cultures and nationalities. Hence, they have different languages. To ensure coordination among the team members and to discuss work in non-meeting times, we have used Facebook Messenger, Google drive and github. Facebook messenger helps us to discuss work, Google drive and github helps us to share our work and gives editing option to all the team members. We discuss our meeting timings and other stuff using Facebook messenger.
+
+
+For Tracking progress: We have used Trello a project management tool and burndown charts to track our project progress. 
+Trello: Trello is a project management tool used to monitor the individual progress which on the whole concludes to make the sprint progress. This is available as mobile and desktop application. We have installed both of them to ensure compatibility and portability. The team members update their work in the application which calculates the remaining work to be implemented and the effort required to implement it. The scrum master mainly uses this to make the sprint plan and daily work plan. The main motivation in using this tool is that team members have experience in working with it and its user friendly interface. We have used Trello as our scrum board and every team member created an account in Trello to update their work. 
+Burndown charts: Burndown charts are the graphical representation of the remaining work with the remaining time. The scrum master implements the burndown charts at the end of each working day to measure the remaining work. This helps in calculating the effort required to complete the remaining work and thus the scrum master can plan the work for the next day and next sprint.
+
+
+For monitoring progress and control:  The PMBOK states that Project Management Methodology(PMM), Project Management Information System(PMIS) and Earned value technique are used to monitor and control progress of a project. In our project we have planned to implement the PMM and Earned value technique to monitor and control progress. The PMM aids the development team in checking if the project is following the PMP. Earned value technique is used to project progress from the initial to the final stage. The scrum master uses this technique to predict the future actions based on past progress.
+
+
+For deviation from project plan: We have used the Project tolerances method to measure the deviation from the PMP. Tolerances are pre-set milestones against which the project progress is monitored and deviations are identified. We have set project milestones at the end of every sprint. These milestones are pre-set project deliverables at the end of every sprint. The scrum master verifies the sprint progress against the pre-set milestones in the sprint planning meeting.
+ 
