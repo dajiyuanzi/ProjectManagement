@@ -22,10 +22,10 @@ public class Food {
 	public String toString(Boolean perGram){
 		String s;
 		if (perGram)
-			s = "Name: " + name + " Protein: " + protein/100 + " carbs: " + carbs/100 + " fat " + fat/100 + " Amount " + amount + "\n";
+			s = "Name: " + name + " Protein: " + protein/100 + " carbs: " + carbs/100 + " fat " + fat/100 + "\n";
 		
 		else
-			s = "Name: " + name + " Protein: " + protein + " carbs: " + carbs + " fat " + fat + " Amount " + amount/100 + "\n";		
+			s = "Name: " + name + " Protein: " + protein + " carbs: " + carbs + " fat " + fat  + "\n";		
 		return s;
 	}
 	
