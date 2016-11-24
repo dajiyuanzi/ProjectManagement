@@ -1,0 +1,173 @@
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.apache.commons.math.optimization.GoalType;
+import org.apache.commons.math.optimization.OptimizationException;
+import org.apache.commons.math.optimization.RealPointValuePair;
+import org.apache.commons.math.optimization.linear.LinearConstraint;
+import org.apache.commons.math.optimization.linear.LinearObjectiveFunction;
+import org.apache.commons.math.optimization.linear.Relationship;
+import org.apache.commons.math.optimization.linear.SimplexSolver;
+
+public class Calculator {
+	private double[] constraints;
+	private double[][] array;
+	private double priceArray[];
+	private ArrayList<Food> foodList;
+	private double carbLimit;
+	private double proteinLimit;
+	private double fatLimit;
+	private double calorieConstraint;
+	private double max = 0;
+	private int nrOfMeals = 0;
+	private RealPointValuePair solution = null;
+	private String[][] foodsPerMeal;
+	
+	public Calculator(ArrayList<Food> list, int calorieConstraint, double proteinFraction, double carbFraction, double fatFraction){
+		foodList = list;
+		this.calorieConstraint = calorieConstraint;
+		/*
+		 * Converting calories to nutrition values.
+		 * 1 gram of protein = 4 cal
+		 * 1 gram of carbs = 4 cal
+		 * 1 gram of fat = 9 cal
+		 * 
+		 */
+		proteinLimit = calorieConstraint * proteinFraction / 4;
+		carbLimit = calorieConstraint * carbFraction / 4;
+		fatLimit = calorieConstraint * fatFraction / 9;
+		//constraints[0] = proteinLimit; constraints[1] =carbLimit; constraints[2] = fatLimit;
+		constraints = new double[]{proteinLimit, carbLimit, fatLimit};
+		array = new double[constraints.length][foodList.size()];
+		priceArray = new double[foodList.size()];
+		//create a matrix from the list
+		for (int i = 0; i < constraints.length; i++){			
+			for (int j = 0; j < foodList.size(); j++){
+				if (i == 0){
+					array[i][j] = foodList.get(j).getProtein();
+					priceArray[j] = foodList.get(j).getPrice();
+				}					
+				else if (i == 1)
+					array[i][j] = foodList.get(j).getCarbs();
+				else if (i == 2)
+					array[i][j] = foodList.get(j).getFat();
+			}
+		}
+	}
+	
+	//OPTIMIZER
+	public void Optimizer(){
+		LinearObjectiveFunction f = new LinearObjectiveFunction(priceArray, 0);		
+		Collection constraintsCollection = new ArrayList();		
+		//add constraints
+		for (int i = 0; i < constraints.length; i++){
+			constraintsCollection.add(new LinearConstraint(array[i], Relationship.EQ, constraints[i]));
+		}		
+		for (int i = 0; i < foodList.size(); i++){
+			double[] d = new double[foodList.size()];
+			d[i] = 1;
+			int lowConstraint = 0;
+			int highConstraint = 0;
+			if (foodList.get(i).category.equals("micro"))
+			{
+				lowConstraint = 200;
+				highConstraint = 400;
+			}
+			else if(foodList.get(i).category.equals("protein") && foodList.get(i).suitsMeal.equals("snack")){
+				highConstraint = 500;
+				lowConstraint = 0;
+			}
+				
+			else
+			{
+				lowConstraint = 0;
+				highConstraint = 10000;
+			}
+
+			constraintsCollection.add(new LinearConstraint(d, Relationship.GEQ, lowConstraint));
+			constraintsCollection.add(new LinearConstraint(d, Relationship.LEQ, highConstraint));
+		}		
+		 //create and run solver
+		 
+		 try {
+		 solution = new SimplexSolver().optimize(f, constraintsCollection, GoalType.MINIMIZE, false);
+		 }
+		 catch (OptimizationException e) {
+		 e.printStackTrace();
+		 }
+		 if (solution != null) {
+			 //get solution
+		 max = solution.getValue();
+		 
+		 
+//		 //print decision variables
+//		 for (int i = 0; i < foodList.size(); i++) {
+//		 System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+//			 }
+//		 System.out.println("The total price is: " + max + " kronor.\n");
+		 }
+	}
+	
+	
+	//PRINT THE WHOLE INPUT MATRIX
+	public void PrintMatrix(){
+		System.out.println("Input matrix");
+		for (int i = 0; i < constraints.length; i++){
+			for (int j = 0; j < foodList.size(); j++){
+				System.out.print(array[i][j] + " ");
+			}
+			System.out.println(constraints[i]);
+						
+		}
+	}
+	//PRINT THE USER INPUT
+	public void PrintConstraints(){
+		System.out.println("Total Calories: " + calorieConstraint + 
+		". Protein: " + proteinLimit +
+		". Carbs: " + carbLimit +
+		" Fat: " + fatLimit + "\n");
+	}
+	
+	//GENERATE MEALS
+	public void GenerateMeals(int nrOfMeals){
+		foodsPerMeal = new String[nrOfMeals][foodList.size()];
+		this.nrOfMeals = nrOfMeals;
+		
+		if (nrOfMeals == 1) {
+			for (int i = 0; i < foodList.size(); i++) {
+				if (solution.getPoint()[i] > 0)
+					foodsPerMeal[0][i] = solution.getPoint()[i] + " grams of " + foodList.get(i).getName();
+					System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+			}
+		}
+		
+		else {
+			for (int i = 0; i < foodList.size(); i++){
+				if (foodList.get(i).suitsMeal.equalsIgnoreCase("snack")){
+					if (solution.getPoint()[i] > 0)
+						foodsPerMeal[0][i] = solution.getPoint()[i] + " grams of " + foodList.get(i).getName();
+						System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+				}
+
+					else if (foodList.get(i).suitsMeal.equalsIgnoreCase("dinner")){
+						if (solution.getPoint()[i] > 0)
+							foodsPerMeal[1][i] = solution.getPoint()[i] + " grams of " + foodList.get(i).getName();
+							System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+					}
+
+			}
+			
+		}		
+		System.out.println("The total price is: " + max + " kronor.\n");
+	}
+	
+	//PRINT PER MEAL
+	public void PrintMeals(){
+		for(int i = 0; i < nrOfMeals; i++){
+			System.out.println("MEAL NUMBER: " + i);
+			for (int j = 0; j < foodList.size(); j++){
+				System.out.println(foodsPerMeal[i][j]);
+			}
+		}
+	}
+}

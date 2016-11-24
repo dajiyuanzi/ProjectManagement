@@ -18,6 +18,11 @@ public class Calculator {
 	private double proteinLimit;
 	private double fatLimit;
 	private double calorieConstraint;
+	private double max = 0;
+	private int nrOfMeals = 0;
+	private RealPointValuePair solution = null;
+	private String[][] foodsPerMeal;
+	private String[] mealName = {"Breakfast", "Snack", "Lunch", "Dinner"};
 	
 	public Calculator(ArrayList<Food> list, int calorieConstraint, double proteinFraction, double carbFraction, double fatFraction){
 		foodList = list;
@@ -62,10 +67,29 @@ public class Calculator {
 		for (int i = 0; i < foodList.size(); i++){
 			double[] d = new double[foodList.size()];
 			d[i] = 1;
-			constraintsCollection.add(new LinearConstraint(d, Relationship.GEQ, 0));			
+			int lowConstraint = 0;
+			int highConstraint = 0;
+			if (foodList.get(i).category.equals("micro"))
+			{
+				lowConstraint = 200;
+				highConstraint = 400;
+			}
+			else if(foodList.get(i).category.equals("protein") && foodList.get(i).suitsMeal.equals("snack")){
+				highConstraint = 500;
+				lowConstraint = 0;
+			}
+				
+			else
+			{
+				lowConstraint = 0;
+				highConstraint = 10000;
+			}
+
+			constraintsCollection.add(new LinearConstraint(d, Relationship.GEQ, lowConstraint));
+			constraintsCollection.add(new LinearConstraint(d, Relationship.LEQ, highConstraint));
 		}		
 		 //create and run solver
-		 RealPointValuePair solution = null;
+		 
 		 try {
 		 solution = new SimplexSolver().optimize(f, constraintsCollection, GoalType.MINIMIZE, false);
 		 }
@@ -74,14 +98,14 @@ public class Calculator {
 		 }
 		 if (solution != null) {
 			 //get solution
-		 double max = solution.getValue();
+		 max = solution.getValue();
 		 
 		 
-		 //print decision variables
-		 for (int i = 0; i < foodList.size(); i++) {
-		 System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
-			 }
-		 System.out.println("The total price is: " + max + " kronor.\n");
+//		 //print decision variables
+//		 for (int i = 0; i < foodList.size(); i++) {
+//		 System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+//			 }
+//		 System.out.println("The total price is: " + max + " kronor.\n");
 		 }
 	}
 	
@@ -103,5 +127,51 @@ public class Calculator {
 		". Protein: " + proteinLimit +
 		". Carbs: " + carbLimit +
 		" Fat: " + fatLimit + "\n");
+	}
+	
+	//GENERATE MEALS
+	public void GenerateMeals(int nrOfMeals){
+		foodsPerMeal = new String[nrOfMeals][foodList.size()];
+		this.nrOfMeals = nrOfMeals;
+		
+		if (nrOfMeals == 1) {
+			for (int i = 0; i < foodList.size(); i++) {
+				if (solution.getPoint()[i] > 0)
+					foodsPerMeal[0][i] = solution.getPoint()[i] + " grams of " + foodList.get(i).getName();
+					System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+			}
+		}
+		
+		else {
+			for (int i = 0; i < foodList.size(); i++){
+				if (foodList.get(i).suitsMeal.equalsIgnoreCase("snack")){
+					if (solution.getPoint()[i] > 0)
+						foodsPerMeal[0][i] = solution.getPoint()[i] + " grams of " + foodList.get(i).getName();
+						System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+				}
+
+					else if (foodList.get(i).suitsMeal.equalsIgnoreCase("dinner")){
+						if (solution.getPoint()[i] > 0)
+							foodsPerMeal[1][i] = solution.getPoint()[i] + " grams of " + foodList.get(i).getName();
+							System.out.print(solution.getPoint()[i] + " grams of " + foodList.get(i).getName() + "\n");
+					}
+
+			}
+			
+		}		
+		System.out.println("The total price is: " + max + " kronor.\n");
+	}
+	
+	//PRINT PER MEAL
+	public void PrintMeals(){
+		for(int i = 0; i < nrOfMeals; i++){
+			int what = i % 2;
+			System.out.println("MEAL NUMBER: " + i);
+			for (int j = 0; j < foodList.size(); j++){
+				if (foodsPerMeal[i][j] != null)
+					System.out.println(foodsPerMeal[i][j]);
+			}
+		}
+		System.out.println("The total price is: " + max + " kronor.\n");
 	}
 }
