@@ -1,7 +1,6 @@
 
 public class Food {
 	
-	String[] category = {"meat", "grain", "fruit/berries", "dairy", "oil"};
 	private String name = "";
 	private double protein = 0;
 	private double carbs = 0;
@@ -9,22 +8,24 @@ public class Food {
 	private double price = 0; 
 	int amount = 0;
 	String suitsMeal = "";
+	String category = "";
 	
-	public Food(String n, int p, int c, int f, double priceIn, String suitsMeal){
+	public Food(String n, int p, int c, int f, double priceIn, String suitsMeal, String category){
 		name = n;
 		protein = p;
 		carbs = c;
 		fat = f;
 		price = priceIn;
 		this.suitsMeal = suitsMeal;
+		this.category = category;
 	}
 	public String toString(Boolean perGram){
 		String s;
 		if (perGram)
-			s = "Name: " + name + " Protein: " + protein/100 + " carbs: " + carbs/100 + " fat " + fat/100 + " Amount " + amount + "\n";
+			s = "Name: " + name + " Protein: " + protein/100 + " carbs: " + carbs/100 + " fat " + fat/100 + "\n";
 		
 		else
-			s = "Name: " + name + " Protein: " + protein + " carbs: " + carbs + " fat " + fat + " Amount " + amount/100 + "\n";		
+			s = "Name: " + name + " Protein: " + protein + " carbs: " + carbs + " fat " + fat  + "\n";		
 		return s;
 	}
 	
